@@ -1,0 +1,37 @@
+<% layout('../layouts/mainlayout.ejs') -%>
+<br/>
+<h3>My Reviews</h3>
+<table>
+<% for(var i=0; i < movies.length; i++) { %>
+  <% for(var j=0; j < movies[i].reviewArray.length; j++) { %>
+    <% if((JSON.stringify(movies[i].reviewArray[j].userID)) == (JSON.stringify(userID))) { %>
+    <tr>
+      <td>
+        <h5><%= movies[i].movieName %><h5>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Stars: <%= movies[i].reviewArray[j].rating %>
+        <a href='/User/EditReview/?_movieName=<%= movies[i].movieName %>'>Edit</a> | 
+      </td>
+      <td>
+        <form action="/User/DeleteReview" method="POST">
+          <input name="_movieName" type="hidden" value='<%= movies[i].movieName %>' />
+          <input type="submit" value="Delete">
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= movies[i].reviewArray[j].date %>
+      </td>
+      <td>
+        <%= movies[i].reviewArray[j].review %>
+      </td>
+    </tr>
+      <% } %>
+    <% } %>
+ <% } %>
+</table>
+

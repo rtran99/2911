@@ -1,0 +1,36 @@
+<% layout('../layouts/mainlayout.ejs') -%>
+<br/>
+<h3>Movie Listing (Home)</h3>
+<table>
+<% for(var i=0; i < movies.length; i++) { %>
+        <tr>
+            <td>
+                <h5>
+                    <%= movies[i].movieName %>
+                </h5>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <% var starsum = 0 %>
+                <% for(var j=0; j < movies[i].reviewArray.length; j++) { %>
+                    <% var starsum = (parseInt(starsum) + parseInt(movies[i].reviewArray[j].rating)) %>
+                <% } %>
+                <% var stars = (starsum / parseInt(movies[i].reviewArray.length)) %>
+                <% if(isNaN(stars)) { %>
+                    Stars: Not yet rated
+                <% } else { %>
+                    Stars: <%= stars.toFixed(0) %>
+                <% } %>
+            </td>
+            <td>
+                <a href='/Home/ReviewListing?_movieName=<%= movies[i].movieName %>'>Reviews:</a> <b><%= movies[i].reviewArray.length %></b>
+            </td>
+            <td>
+                <a href='/User/WriteReview?_movieName=<%= movies[i].movieName %>'> Write a Review</a>
+            </td>
+        </tr>
+    <% } %>
+</table>
+<br/>
+<%= errorMessage ? errorMessage : "" %><br/>

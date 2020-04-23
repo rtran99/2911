@@ -1,0 +1,33 @@
+<% layout('../layouts/mainlayout.ejs') -%>
+<br/>
+<h3>Update Profile</h3>
+<form action="/User/UpdateUser" method="POST">   
+    <table>
+        <tr>
+            <td>Public Facing Name: </td>
+            <td><input name="username" type="text"
+                       value="<%= user.username ? user.username : '' %>"></td>
+        </tr>
+        <tr>
+            <td>First Name: </td>
+            <td><input name="firstName" type="text"
+                       value="<%= user.firstName ? user.firstName : '' %>"></td>
+        
+        </tr>
+        <tr>
+            <td>Last Name: </td>
+            <td><input name="lastName" type="text"
+                       value="<%= user.lastName ? user.lastName : '' %>"></td>
+        
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td><input name="email" type="text"
+                       value="<%= user.email ? user.email : '' %>"></td>
+        </tr>
+        <input name="_id" type="hidden" value="<%= user._id %>">
+        <tr>
+            <td> <input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+</form>
