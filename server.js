@@ -10,7 +10,7 @@ var bodyParser    = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
 var cors = require('cors')
 const port = process.env.PORT || 3000;
-mongoose.connect(process.env.MONGODB_URI || 'mongod://localhost/app.js');
+mongoose.connect(process.env.MONGODB_URI || 'mongod://localhost/server.js');
 
 var app           = express();
 
