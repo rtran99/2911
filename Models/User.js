@@ -13,12 +13,9 @@ var userSchema = mongoose.Schema({
   email: {
     type: String
   },
-  firstName: {
-    type: String
-  },
-  lastName: {
-      type: String
-  }
+  prestige: {type: Array, default: [0, 0]},
+  items : {type: Array, default: [0, 0]},
+  bitcoin: {type: Number, default: 0}
 });
 userSchema.plugin(passportLocalMongoose);
 var User = module.exports = mongoose.model('User', userSchema);

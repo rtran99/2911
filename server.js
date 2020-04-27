@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express       = require('express');
 var mongoose      = require('mongoose');
 var passport      = require('passport');
@@ -6,26 +8,27 @@ var path          = require('path');
 var engine        = require('ejs-locals');
 var bodyParser    = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
-const DB_URI      = 'mongodb://localhost:27017/moviedb';
-let options       = { useNewUrlParser: true , useUnifiedTopology: true };
-mongoose.connect(DB_URI, options);
+var cors = require('cors')
+mongoose.connect(process.env.MONGODB_URI || 'mongod://localhost/app.js');
+const port = process.env.PORT || 3000;
 mongoose.set('useCreateIndex', true);
 
 var app           = express();
 
 // Parse URL-encoded bodies (as sent by HTML forms)
-app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
-app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
-app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
-
 app.use(express.urlencoded({ extended: true }));;
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(require('express-session')({
-    secret: 'keyboard cat',
+    secret: 'KingYeLLow',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,    
+    cookie: { maxAge:60000 },
+    store: new (require('express-sessions'))({
+      storage: 'mongodb',
+    })
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 const User = require('./Models/User');
@@ -35,14 +38,14 @@ passport.deserializeUser(User.deserializeUser());
 
  // Enable routing and use port 1337.
 require('./router')(app);
-app.set('port', 1337);
+app.set('port', port);
 
  // Set up ejs templating.
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
 // Set view folder.
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'Views'));
 
 // That line is to specify a directory where you could 
 // link to static files (images, CSS, etc.). 
@@ -52,4 +55,13 @@ app.use(express.static(path.join(__dirname, 'static')));
  
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+})
+
+app.use(cors());
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  res.header("Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
 });
