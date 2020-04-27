@@ -9,7 +9,7 @@ var engine        = require('ejs-locals');
 var bodyParser    = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
 var cors = require('cors')
-mongoose.connect(process.env.MONGODB_URI || 'mongod://localhost/app.js');
+mongoose.connect(process.env.MONGODB_URI || 'mongod://localhost/server.js');
 const port = process.env.PORT || 3000;
 mongoose.set('useCreateIndex', true);
 

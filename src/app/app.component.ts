@@ -17,7 +17,7 @@ export class AppComponent {
     reqInfo:any           = null;
     msgFromServer:string  = '';
     _apiService:ApiService;
-    public site='http://localhost:1337/';
+    public site='/';
 
     // roles:Array<any> = [];
     loggedin = false;

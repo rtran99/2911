@@ -16,7 +16,7 @@ export class PageMainComponent {
     _apiService:ApiService;
 
     bitcoin: number
-    public site='http://localhost:1337/';
+    public site='/';
 
     // Since we are using a provider above we can receive 
     // an instance through an constructor.
