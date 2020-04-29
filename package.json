@@ -1,6 +1,11 @@
 {
   "name": "myapp",
   "version": "0.0.0",
+  "main": "server.js",
+  "engines":{
+    "node":">12.x",
+    "npm":">6.x"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
@@ -47,7 +52,6 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
-    "node": "12.x",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "^5.0.1",
