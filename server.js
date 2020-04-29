@@ -9,13 +9,9 @@ var engine        = require('ejs-locals');
 var bodyParser    = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
 var port          = process.env.PORT || 1337;
-let options       = { useNewUrlParser: true , useUnifiedTopology: true };
-let MONGOLAB_URI     = "mongodb://heroku_cd0z0t32:ipgsr9qio861mst9832vt1snnh@ds061731.mlab.com:61731/heroku_cd0z0t32"
-mongoose.connect(MONGOLAB_URI, options || 'mongodb://localhost:1337');
-mongoose.connection.on("open", function (ref) {
-  console.log("Connected to mongo server.");
-});
-mongoose.connection.on('error', function (err) { console.log(err) });
+var option        =  { useNewUrlParser: true , useUnifiedTopology: true }
+mongoose.connect(process.env.MONGODB_URI)
+
 
 var app           = express();
 
