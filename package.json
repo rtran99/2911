@@ -1,13 +1,12 @@
 {
   "name": "myapp",
   "version": "0.0.0",
+  "engine": {
+    "node": ">12.x",
+    "npm": ">6.x"
+  },
   "scripts": {
-    "ng": "ng",
     "start": "node server.js",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -36,7 +35,7 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
-    "dotenv": "^8.2.0"
+    "dotenv": "~8.2.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.1",
