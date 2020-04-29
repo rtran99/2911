@@ -16,7 +16,7 @@ let AppComponent = class AppComponent {
         this.managerData = '';
         this.reqInfo = null;
         this.msgFromServer = '';
-        this.site = 'http://localhost:1337/';
+        this.site = '/';
         // roles:Array<any> = [];
         this.loggedin = false;
         // Pass in http module and pointer to AppComponent.

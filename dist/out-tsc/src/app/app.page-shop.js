@@ -16,7 +16,7 @@ let PageShopComponent = class PageShopComponent {
         this.managerData = '';
         this.reqInfo = null;
         this.msgFromServer = '';
-        this.site = 'http://localhost:1337/';
+        this.site = '/';
         // Pass in http module and pointer to AppComponent.
         this._apiService = new ApiService(http, this);
         this.getItems();

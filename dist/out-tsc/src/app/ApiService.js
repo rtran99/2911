@@ -2,7 +2,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class ApiService {
     constructor(http, that) {
         this.http = http;
-        this.site = 'http://localhost:1337/';
+        this.site = '/';
         // Pointer to component using ApiService.
         this._that = that;
     }
