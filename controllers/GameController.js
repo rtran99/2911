@@ -1,6 +1,6 @@
-const RequestService = require('../Services/RequestService');
-const Item           = require('../Models/Item');
-const ItemRepo       = require('../Data/ItemRepo');
+const RequestService = require('../services/RequestService');
+const Item           = require('../models/Item');
+const ItemRepo       = require('../data/ItemRepo');
 const _itemRepo      = new ItemRepo();
 
 

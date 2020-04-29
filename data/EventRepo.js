@@ -1,4 +1,4 @@
-const Event = require('../Models/Event');
+const Event = require('../models/Event');
 
 class EventRepo {
     EventRepo() {        

@@ -1,4 +1,4 @@
-const Item = require('../Models/Item');
+const Item = require('../models/Item');
 
 class ItemRepo {
     ItemRepo() {        

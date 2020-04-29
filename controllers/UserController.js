@@ -1,12 +1,12 @@
-const User           = require('../Models/User');
-const UserRepo       = require('../Data/UserRepo');
+const User           = require('../models/User');
+const UserRepo       = require('../data/UserRepo');
 const _userRepo      = new UserRepo();
 
-const ItemRepo = require('../Data/ItemRepo');
+const ItemRepo = require('../data/ItemRepo');
 const _itemRepo = new ItemRepo();
 
 var   passport       = require('passport');
-const RequestService = require('../Services/RequestService');
+const RequestService = require('../services/RequestService');
 
 // This function returns data to authenticated users only.
 exports.SecureAreaJwt  = async function(req, res) {
