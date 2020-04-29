@@ -1,11 +1,6 @@
 {
   "name": "myapp",
   "version": "0.0.0",
-  "main": "server.js",
-  "engines":{
-    "node":"~12.16.0",
-    "npm":"~6.14.0"
-  },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
