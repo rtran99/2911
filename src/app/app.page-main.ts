@@ -39,7 +39,7 @@ export class PageMainComponent {
     }
 
     getBitcoin() {
-        let url = this.site + 'User/getBitcoin'
+        let url = this.site + 'user/getBitcoin'
         this.http.post<any>(url, {
             email: sessionStorage.getItem("email")
         })
@@ -50,7 +50,7 @@ export class PageMainComponent {
     }
 
     getUserItemArray(){
-        let url = this.site + 'User/getItemArray'
+        let url = this.site + 'user/getItemArray'
         this.http.post<any>(url, {
             email: sessionStorage.getItem("email")
         })
@@ -93,7 +93,7 @@ export class PageMainComponent {
     }
 
     saveProgress() {
-        let url = this.site + 'User/saveProgress'
+        let url = this.site + 'user/saveProgress'
         this.http.post<any>(url, {
             email: sessionStorage.getItem("email"),
             bitcoin: this.bitcoin

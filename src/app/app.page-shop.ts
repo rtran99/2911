@@ -34,7 +34,7 @@ export class PageShopComponent {
     }
 
     getBitcoin() {
-        let url = this.site + 'User/getBitcoin'
+        let url = this.site + 'user/getBitcoin'
         this.http.post<any>(url, {
             email: sessionStorage.getItem("email")
         })
@@ -68,7 +68,7 @@ export class PageShopComponent {
     }
 
     make_transaction(name){
-        let url = this.site + 'User/makeTransaction'
+        let url = this.site + 'user/makeTransaction'
         this.http.post<any>(url, {
             email: sessionStorage.getItem("email"),
             name: name
@@ -81,7 +81,7 @@ export class PageShopComponent {
     }
 
     saveProgress() {
-        let url = this.site + 'User/saveProgress'
+        let url = this.site + 'user/saveProgress'
         this.http.post<any>(url, {
             email: sessionStorage.getItem("email"),
             bitcoin: this.bitcoin

@@ -10,18 +10,18 @@ module.exports = function(app){
     // Main Routes
     app.get('/',      HomeController.Index);
 
-    app.get('/User/Register', UserController.Register);
-    app.post('/User/RegisterUser', cors(), UserController.RegisterUser);
-    app.get('/User/Login', UserController.Login);
-    app.post('/User/LoginUser', UserController.LoginUser);
-    app.get('/User/Logout', UserController.Logout);
-    app.get('/User/SecureArea', UserController.SecureArea);
+    app.get('/user/Register', UserController.Register);
+    app.post('/user/RegisterUser', cors(), UserController.RegisterUser);
+    app.get('/user/Login', UserController.Login);
+    app.post('/user/LoginUser', UserController.LoginUser);
+    app.get('/user/Logout', UserController.Logout);
+    app.get('/user/SecureArea', UserController.SecureArea);
 
-    app.post('/User/getBitcoin', cors(), UserController.getBitcoin);
-    app.post('/User/saveProgress', cors(), UserController.saveProgress)
+    app.post('/user/getBitcoin', cors(), UserController.getBitcoin);
+    app.post('/user/saveProgress', cors(), UserController.saveProgress)
     app.get('/Game/getItems', cors(), GameController.getItems)
-    app.post('/User/makeTransaction', cors(), UserController.makeTransaction)
-    app.post('/User/getItemArray', cors(), UserController.getItemArray)
+    app.post('/user/makeTransaction', cors(), UserController.makeTransaction)
+    app.post('/user/getItemArray', cors(), UserController.getItemArray)
     // Sign in
     app.post(
         '/auth', cors(),
@@ -32,16 +32,16 @@ module.exports = function(app){
 
     // Accessible to authenticated user. CORS must be enabled 
     // for client App to access it.
-    app.get('/User/SecureAreaJwt', cors(),  
+    app.get('/user/SecureAreaJwt', cors(),  
         authMiddleware.requireJWT, UserController.SecureAreaJwt)
 
     // Accessible to manager or admin. CORS must be enabled for 
     // client App to access it.
-    app.get('/User/ManagerAreaJwt', cors(), 
+    app.get('/user/ManagerAreaJwt', cors(), 
         authMiddleware.requireJWT, UserController.ManagerAreaJwt)
     
     // Receives posted data from authenticated users.
-    app.post('/User/PostAreaJwt', cors(), 
+    app.post('/user/PostAreaJwt', cors(), 
         authMiddleware.requireJWT, UserController.PostAreaJwt)
 
 };

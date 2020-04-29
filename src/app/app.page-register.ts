@@ -33,7 +33,7 @@ export class PageRegisterComponent {
     }
 
     register() {
-        let url = this.site + "User/RegisterUser";
+        let url = this.site + "user/RegisterUser";
     
         // This free online service receives post submissions.
         this.http.post(url, {

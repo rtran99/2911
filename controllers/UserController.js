@@ -18,7 +18,7 @@ exports.SecureAreaJwt  = async function(req, res) {
                            +  "successfully accessed this message."})
     }
     else {
-        res.json( {errorMessage:'/User/Login?errorMessage=You ' + 
+        res.json( {errorMessage:'/user/Login?errorMessage=You ' + 
                   'must be logged in to view this page.'})
     }
 }
@@ -48,7 +48,7 @@ exports.PostAreaJwt = async function(req, res) {
 // Displays registration form.
 exports.Register = async function(req, res) {
     let reqInfo = RequestService.reqHelper(req);
-    res.render('User/Register', {errorMessage:"", user:{}, reqInfo:reqInfo})
+    res.render('user/Register', {errorMessage:"", user:{}, reqInfo:reqInfo})
 };
 
 // Handles 'POST' with registration form submission.
@@ -95,7 +95,7 @@ exports.Login = async function(req, res) {
     let reqInfo      = RequestService.reqHelper(req);
     let errorMessage = req.query.errorMessage; 
 
-    res.render('User/Login', { user:{}, errorMessage:errorMessage, 
+    res.render('user/Login', { user:{}, errorMessage:errorMessage, 
                                reqInfo:reqInfo});
 }
 
@@ -107,8 +107,8 @@ exports.LoginUser = async function(req, res, next) {
     sessionData.roles  = roles;
   
   passport.authenticate('local', {
-      successRedirect : '/User/SecureArea', 
-      failureRedirect : '/User/Login?errorMessage=Invalid login.', 
+      successRedirect : '/user/SecureArea', 
+      failureRedirect : '/user/Login?errorMessage=Invalid login.', 
   }) (req, res, next);
 };
 
@@ -117,7 +117,7 @@ exports.Logout = (req, res) => {
     req.logout();
     let reqInfo = RequestService.reqHelper(req);
 
-    res.render('User/Login', { user:{}, isLoggedIn:false, errorMessage : "", 
+    res.render('user/Login', { user:{}, isLoggedIn:false, errorMessage : "", 
                                reqInfo:reqInfo});
 };
 
@@ -127,10 +127,10 @@ exports.SecureArea  = async function(req, res) {
     let reqInfo = RequestService.reqHelper(req);
 
     if(reqInfo.authenticated) {
-        res.render('User/SecureArea', {errorMessage:"", reqInfo:reqInfo})
+        res.render('user/SecureArea', {errorMessage:"", reqInfo:reqInfo})
     }
     else {
-        res.redirect('/User/Login?errorMessage=You ' + 
+        res.redirect('/user/Login?errorMessage=You ' + 
                      'must be logged in to view this page.')
     }
 }
