@@ -10,7 +10,7 @@ var bodyParser    = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
 var port          = process.env.PORT || 1337;
 let options       = { useNewUrlParser: true , useUnifiedTopology: true };
-mongoose.connect(process.env.MONGODB_URI, options || 'mongodb://localhost:27017/Outbreak', options);
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/Outbreak', options);
 mongoose.connection.on("open", function (ref) {
   console.log("Connected to mongo server.");
 });
