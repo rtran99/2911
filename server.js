@@ -9,6 +9,7 @@ var bodyParser    = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
 var app           = express();
 var ObjectID      = mongodb.ObjectID
+var db;
 
 mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
   if (err) {
@@ -31,6 +32,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:2701
 app.use(express.urlencoded({ extended: true }));;
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(require('express-session')({
     secret: 'keyboard cat',
     resave: false,
