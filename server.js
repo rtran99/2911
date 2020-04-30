@@ -2,6 +2,7 @@ require('dotenv').config();
 
 var express       = require('express');
 var mongoose      = require('mongoose');
+var MongoClient = require('mongodb').MongoClient;
 var passport      = require('passport');
 var http          = require('http');
 var path          = require('path');
@@ -26,7 +27,7 @@ var options       = {
   }
 }
 
-mongoose.connect(hardURI, options)
+MongoClient.connect(hardURI, options)
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'))
 var app           = express();
