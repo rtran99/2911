@@ -19,7 +19,7 @@ export class PageMainComponent {
     userItemArray: any
     itemArray: any
     totalPower: number
-    public site='http://localhost:1337/';
+    public site='/';
 
     // Since we are using a provider above we can receive 
     // an instance through an constructor.
