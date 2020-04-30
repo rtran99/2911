@@ -88,7 +88,7 @@ export class PageShopComponent {
         })
             .subscribe(
                 (data) => {
-
+                    console.log(data)
                 } )
     }
 
