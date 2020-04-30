@@ -78,7 +78,7 @@ else{
 */
 app.use(express.static(path.join(__dirname, 'static')));
 
-app.listen(port, console.log(`Server is up on ${PORT}`));
+app.listen(port, console.log("Server is up on " +port));
 
 var cors = require('cors')
 
