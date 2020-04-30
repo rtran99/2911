@@ -10,7 +10,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var app           = express();
 var ObjectID      = mongodb.ObjectID
 
-mongodb.MongoClient.connect(process.env.MONGODB_URI) || "mongodb://localhost:22017/", function (err, client){
+mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
   if (err) {
     console.log(err);
     process.exit(1);
@@ -25,7 +25,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI) || "mongodb://localhost:220
     var port = server.address().port;
     console.log("App now running on port", port);
   });
-}
+});
 
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: true }));;
