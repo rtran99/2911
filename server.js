@@ -9,6 +9,7 @@ var engine        = require('ejs-locals');
 var bodyParser    = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
 var port          = process.env.PORT || 1337;
+var hardURI       = "mongodb://KingYellow:gRIM8080@ds061731.mlab.com:61731/heroku_cd0z0t32"
 
 var options       = {
   "server" : {
@@ -25,11 +26,9 @@ var options       = {
   }
 }
 
-mongoose.connect(process.env.MONGODB_URI, options)
+mongoose.connect(hardURI, options)
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'))
-
-
 var app           = express();
 
 // Parse URL-encoded bodies (as sent by HTML forms)
@@ -68,11 +67,18 @@ app.set('views', path.join(__dirname, 'views'));
 // link to static files (images, CSS, etc.). 
 // So if you put a style.css file in that directory and you 
 // could link directly to it in your view <link href=”style.css” rel=”stylesheet”>
+
+/*
+if (process.eng.NODE_ENV === 'production'){
+  app.use(express.static(path.join('src/build')))
+}
+else{
+  app.use(express.static(path.join(__dirname, 'static')));
+}
+*/
 app.use(express.static(path.join(__dirname, 'static')));
- 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-})
+
+app.listen(port, console.log(`Server is up on ${PORT}`));
 
 var cors = require('cors')
 
