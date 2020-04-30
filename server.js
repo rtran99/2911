@@ -1,9 +1,8 @@
 require('dotenv').config();
 
 var express       = require('express');
-var mongoose      = require('mongoose');
+var mongodb       = require('mongodb');
 var passport      = require('passport');
-var http          = require('http');
 var path          = require('path');
 var engine        = require('ejs-locals');
 var bodyParser    = require('body-parser');
@@ -28,8 +27,6 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI) || "mongodb://localhost:220
   });
 }
 
-
-
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: true }));;
 app.use(express.json());
@@ -51,16 +48,12 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
- // Enable routing and use port 1337.
+ // Enable routing.
 require('./router')(app);
-app.set('port', port);
 
  // Set up ejs templating.
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
-
-// Set view folder.
-app.set('views', path.join(__dirname, 'views'));
 
 // That line is to specify a directory where you could 
 // link to static files (images, CSS, etc.). 
@@ -77,6 +70,7 @@ else{
 */
 app.use(express.static(path.join(__dirname, 'static')));
 
+// generic exception handler
 function handleError(res, reason, message, code) {
   console.log("ERROR: " + reason);
   res.status(code || 500).json({"error": message});
