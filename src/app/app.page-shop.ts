@@ -18,7 +18,7 @@ export class PageShopComponent {
     reqInfo:any           = null;
     msgFromServer:string  = '';
     _apiService:ApiService;
-    public site='/';
+    public site='';
 
     itemArray:any
     bitcoin: number

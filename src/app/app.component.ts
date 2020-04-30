@@ -17,7 +17,7 @@ export class AppComponent {
     reqInfo:any           = null;
     msgFromServer:string  = '';
     _apiService:ApiService;
-    public site='/';
+    public site='';
 
     // roles:Array<any> = [];
     loggedin = false;
