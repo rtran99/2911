@@ -12,22 +12,8 @@ var LocalStrategy = require('passport-local').Strategy;
 var port          = process.env.PORT || 1337;
 var hardURI       = "mongodb://KingYellow:gRIM8080@ds061731.mlab.com:61731/heroku_cd0z0t32"
 
-var options       = {
-  "server" : {
-    "socketOptions" : {
-      "keepAlive" : 300000,
-      "connectTimeoutMS" : 30000
-    }
-  },
-  "replset" : {
-    "socketOptions" : {
-      "keepAlive" : 300000,
-      "connectTimeoutMS" : 30000
-    }
-  }
-}
 
-MongoClient.connect(hardURI, options)
+MongoClient.connect(hardURI)
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'))
 var app           = express();
