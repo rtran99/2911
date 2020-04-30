@@ -2,22 +2,33 @@ require('dotenv').config();
 
 var express       = require('express');
 var mongoose      = require('mongoose');
-var MongoClient = require('mongodb').MongoClient;
 var passport      = require('passport');
 var http          = require('http');
 var path          = require('path');
 var engine        = require('ejs-locals');
 var bodyParser    = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
-var port          = process.env.PORT || 1337;
-var hardURI       = "mongodb://KingYellow:gRIM8080@ds061731.mlab.com:61731/heroku_cd0z0t32"
-
-
-MongoClient.connect(hardURI)
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'))
-console.log(db)
 var app           = express();
+var ObjectID      = mongodb.ObjectID
+
+mongodb.MongoClient.connect(process.env.MONGODB_URI) || "mongodb://localhost:22017/", function (err, client){
+  if (err) {
+    console.log(err);
+    process.exit(1);
+  }
+
+  // Save database object from the callback for reuse.
+  db = client.db();
+  console.log("Database connection ready");
+
+  // Initialize the app.
+  var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+  });
+}
+
+
 
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: true }));;
@@ -66,7 +77,10 @@ else{
 */
 app.use(express.static(path.join(__dirname, 'static')));
 
-app.listen(port, console.log("Server is up on " +port));
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}
 
 var cors = require('cors')
 
