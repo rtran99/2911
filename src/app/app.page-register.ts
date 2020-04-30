@@ -22,7 +22,7 @@ export class PageRegisterComponent {
     reqInfo:any           = null;
     msgFromServer:string  = '';
     _apiService:ApiService;
-    public site='';
+    public site='/';
 
     // Since we are using a provider above we can receive 
     // an instance through an constructor.
