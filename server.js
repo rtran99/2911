@@ -9,8 +9,25 @@ var engine        = require('ejs-locals');
 var bodyParser    = require('body-parser');
 var LocalStrategy = require('passport-local').Strategy;
 var port          = process.env.PORT || 1337;
-var option        =  { useNewUrlParser: true , useUnifiedTopology: true }
-mongoose.connect(process.env.MONGODB_URI)
+
+var options       = {
+  "server" : {
+    "socketOptions" : {
+      "keepAlive" : 300000,
+      "connectTimeoutMS" : 30000
+    }
+  },
+  "replset" : {
+    "socketOptions" : {
+      "keepAlive" : 300000,
+      "connectTimeoutMS" : 30000
+    }
+  }
+}
+
+mongoose.connect(process.env.MONGODB_URI, options)
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'))
 
 
 var app           = express();
