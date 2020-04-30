@@ -27,9 +27,10 @@ export class PageMainComponent {
         // Pass in http module and pointer to AppComponent.
         this._apiService = new ApiService(http, this);
         this.checkLoggedIn()
-        this.getBitcoin()
         this.getItems()
+        this.getBitcoin()
         this.getUserItemArray()
+        this.startAutosave()
     }
 
     checkLoggedIn() {
@@ -93,6 +94,7 @@ export class PageMainComponent {
     }
 
     saveProgress() {
+        console.log('Saving Progress..')
         let url = this.site + 'user/saveProgress'
         this.http.post<any>(url, {
             email: sessionStorage.getItem("email"),
@@ -104,5 +106,20 @@ export class PageMainComponent {
                 } )
     }
 
+    //Can someone figure out how to call saveProgress() in setInterval? I cant seem to do it so i just retyped the saveProgress() function lol
+    startAutosave() {
+        setInterval(() => {
+            console.log('Saving Progress..')
+            let url = this.site + 'user/saveProgress'
+            this.http.post<any>(url, {
+                email: sessionStorage.getItem("email"),
+                bitcoin: this.bitcoin
+            })
+                .subscribe(
+                    (data) => {
+                        console.log(data)
+                    } )
+        }, 5000)
+    }
 
 }
