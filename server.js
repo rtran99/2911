@@ -16,6 +16,7 @@ var hardURI       = "mongodb://KingYellow:gRIM8080@ds061731.mlab.com:61731/herok
 MongoClient.connect(hardURI)
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'))
+console.log(db)
 var app           = express();
 
 // Parse URL-encoded bodies (as sent by HTML forms)
